@@ -1,0 +1,1 @@
+from .func_helper import delete_instance_on_error
