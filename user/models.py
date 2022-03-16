@@ -20,5 +20,3 @@ class User(AbstractUser):
         },
         db_index=True,
     )
-    first_name = models.CharField(_("first name"), max_length=30)
-    last_name = models.CharField(_("last name"), max_length=30)
