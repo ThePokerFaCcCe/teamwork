@@ -23,6 +23,6 @@ def create_member(team=None, user=None,
                   **kwargs) -> Member:
     return Member.objects.create(
         team=team or create_team(),
-        user=user or create_user,
+        user=user or create_user(),
         rank=rank, **kwargs
     )
