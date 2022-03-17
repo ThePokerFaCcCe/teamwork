@@ -8,4 +8,4 @@ def get_user_teams(user_id) -> QuerySet:
         id__in=Member.objects.only('team_id')
         .filter(user_id=user_id).
         values_list('team_id', flat=True)
-    )
+    ).select_related("creator")
