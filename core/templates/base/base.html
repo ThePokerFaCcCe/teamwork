@@ -1,0 +1,35 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{%static 'base/base.css'%}">
+    {%block header%}{%endblock%}
+    <title>{%block title%}Title{%endblock%}</title>
+</head>
+
+<body>
+    {%if form and form.errors%}
+    <div class="errors-box">
+        {% for field in form %}
+        {%if field.errors%}
+        <div class="error">
+            <p>{{field.name}}</p>
+            <ul>
+                {% for error in field.errors %}
+                <li> {{ error }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {%endif%}
+        {% endfor %}
+    </div>
+    {%endif%}
+    {%block body%}{%endblock%}
+</body>
+
+</html>

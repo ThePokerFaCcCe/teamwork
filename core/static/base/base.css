@@ -1,0 +1,18 @@
+.errors-box {
+  position: fixed;
+  top: 3px;
+  color: #ffffff;
+}
+.error {
+  background: #ff3e3e;
+  border-radius: 10px;
+  padding: 1px 20px;
+  box-shadow: 1px 1px 30px #000;
+  margin-bottom: 10px;
+}
+.error p {
+  font-weight: bold;
+}
+.error ul {
+  font-size: 14px;
+}
