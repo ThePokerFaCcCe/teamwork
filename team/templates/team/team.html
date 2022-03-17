@@ -1,0 +1,54 @@
+{%extends "base/base.html"%}
+{%load static%}
+{%block header%}
+<link rel="stylesheet" href="{%static 'team/team.css' %}">
+{%endblock%}
+
+
+{%block title%}
+Teams
+{%endblock%}
+
+{%block body%}
+<div class="main">
+    <div class="team-list">
+        <!-- team list -->
+        <h1>Your teams</h1>
+        <ul class="cards">
+            {%if object_list%}
+            {%for team in object_list%}
+            <li class="cards_item">
+                <div class="card">
+                    <div class="card_content">
+                        <h2 class="card_title">{{team.name}}</h2>
+                        <p class="card_text">{{team.description}}</p>
+                        <span class="card_author">Creator: {{team.creator.username}}</span>
+                        <a href="" class="btn card_btn">OPEN TEAM</a>
+                    </div>
+                </div>
+            </li>
+            {%endfor%}
+            {%else%}
+            <p>You have no teams :(</p>
+            {%endif%}
+        </ul>
+    </div>
+
+    <div class="team-create">
+        <h1>Create team</h1>
+        <form action="#" id="js-form" method="post" name="add-task" class="addtask">
+            {%csrf_token%}
+            <div class="name">
+                <input type="text" name="name" placeholder="name" />
+            </div>
+            <div class="message">
+                <label for="description">Description:</label>
+                <textarea cols="40" rows="8" name="description" id="description"></textarea>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Create team" />
+            </div>
+        </form>
+    </div>
+</div>
+{%endblock%}
