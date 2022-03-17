@@ -6,7 +6,8 @@ from team.models import Member, Team
 
 class Task(models.Model):
     title = models.CharField(_("title"), max_length=50)
-    descripion = models.TextField(_("descripion"), max_length=255)
+    description = models.TextField(_("description"), max_length=255,
+                                   null=True, blank=True)
 
     class StatusChoices(models.TextChoices):
         DONE = "D", _("done")
