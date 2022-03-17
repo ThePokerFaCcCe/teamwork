@@ -2,7 +2,10 @@ from uuid import uuid4
 from django.contrib.auth import get_user_model
 
 from team.models import Team, Member
+from task.models import Task
 
+
+TaskStatusChoices = Task.StatusChoices
 User = get_user_model()
 
 
@@ -25,4 +28,18 @@ def create_member(team=None, user=None,
         team=team or create_team(),
         user=user or create_user(),
         rank=rank, **kwargs
+    )
+
+
+def create_task(member=None, team=None,
+                status=TaskStatusChoices.SENT,
+                **kwargs) -> Task:
+    kwargs.setdefault("title", "Task #1")
+    kwargs.setdefault("description", "your task is ...")
+
+    team = team or create_team()
+    return Task.objects.create(
+        team=team, status=status,
+        member=member or create_member(team),
+        **kwargs
     )
