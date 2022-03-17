@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.views.generic import FormView
 
@@ -7,7 +8,9 @@ from user.forms import UserSignupForm, UserLoginForm
 
 class AuthView(FormView):
     template_name = 'user/auth.html'
-    success_url = '/team/'
+
+    def get_success_url(self) -> str:
+        return reverse("team")
 
     def get_form_class(self):
         if 'login' in self.request.POST:
