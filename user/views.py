@@ -21,7 +21,6 @@ class AuthView(FormView):
         username = form.cleaned_data['username']
         password = form.cleaned_data['password']
         if 'login' in self.request.POST:
-            print(username, password, sep='\n--\n')
             user = authenticate(
                 self.request,
                 username=username,
