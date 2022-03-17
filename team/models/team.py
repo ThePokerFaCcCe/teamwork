@@ -11,3 +11,6 @@ class Team(models.Model):
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE,
                                 related_name="owned_teams")
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
+
+    class Meta:
+        ordering = ["name"]
