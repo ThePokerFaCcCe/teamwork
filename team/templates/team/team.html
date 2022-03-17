@@ -21,7 +21,13 @@ Teams
                 <div class="card">
                     <div class="card_content">
                         <h2 class="card_title">{{team.name}}</h2>
-                        <p class="card_text">{{team.description}}</p>
+                        <p class="card_text">
+                            {%if team.description%}
+                            {{team.description}}
+                            {%else%}
+                            No description
+                            {%endif%}
+                        </p>
                         <span class="card_author">Creator: {{team.creator.username}}</span>
                         <a href="" class="btn card_btn">OPEN TEAM</a>
                     </div>
