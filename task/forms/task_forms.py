@@ -1,6 +1,7 @@
 from django import forms
 from django.utils import timezone
-from .models import Task
+
+from ..models import Task
 
 
 class TaskCreateForm(forms.ModelForm):
@@ -27,3 +28,12 @@ class TaskCreateForm(forms.ModelForm):
 
         if self.cleaned_data['member'].team_id != self.cleaned_data['team'].pk:
             self.add_error("member", 'Member not found')
+
+
+class TaskUpdateStatusForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = [
+            "status"
+        ]
