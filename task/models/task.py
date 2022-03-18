@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 from team.models import Member, Team
 
@@ -26,6 +27,12 @@ class Task(models.Model):
 
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
     updated_at = models.DateTimeField(_("updated at"), auto_now=True)
+
+    @property
+    def days_left(self) -> int:
+        """Return days left to `deadline`"""
+        days = (self.deadline - timezone.now().date()).days
+        return days if days > 0 else 0
 
     class Meta:
         ordering = ['-created_at']
