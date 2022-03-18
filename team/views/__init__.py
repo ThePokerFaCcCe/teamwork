@@ -1,1 +1,1 @@
-from .team_view import TeamView
+from .team_view import TeamView, TeamManagementView
