@@ -16,6 +16,7 @@ class Task(models.Model):
     status = models.CharField(_("status"), max_length=1,
                               choices=StatusChoices.choices,
                               default=StatusChoices.SENT)
+    deadline = models.DateField(_("Deadline"))
 
     member = models.ForeignKey(to=Member, on_delete=models.CASCADE,
                                related_name="tasks")
