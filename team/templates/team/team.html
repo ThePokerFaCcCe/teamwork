@@ -29,7 +29,7 @@ Teams
                             {%endif%}
                         </p>
                         <span class="card_author">Creator: {{team.creator.username}}</span>
-                        <a href="" class="btn card_btn">OPEN TEAM</a>
+                        <a href="{%url 'team-management' team.pk%}" class="btn card_btn">OPEN TEAM</a>
                     </div>
                 </div>
             </li>
