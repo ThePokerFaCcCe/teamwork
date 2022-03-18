@@ -1,0 +1,74 @@
+{%extends "base/base.html"%}
+{%load static%}
+{%block header%}
+<link rel="stylesheet" href="{%static 'team/management.css' %}">
+{%endblock%}
+
+
+{%block title%}
+{{object.name}}'s management
+{%endblock%}
+
+{%block body%}
+<div class="part">
+    <h1 class="member-list-title">MEMBERS</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for member in object.members.all%}
+            <tr>
+                <td data-column="Username">{{member.user.username}}</td>
+                <td data-column="Tasks">{{member.tasks_status}}</td>
+            </tr>
+            {%endfor%}
+            <tr>
+                <td data-column="Username">
+                    <form action="" method="post" name="add-member">
+                        {%csrf_token%}
+                        <input type="text" name="username" id="username" placeholder="username">
+                        <input type="hidden" name="team" value="{{object.pk}}">
+                        <input type="submit" value="Add" name="add_member">
+                    </form>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="part">
+    <h1>ADD TASK</h1>
+    <form action="#" id="js-form" method="post" name="add-task" class="addtask">
+        {%csrf_token%}
+        <div class="name">
+            <input type="text" name="title" placeholder="title" />
+        </div>
+        <div class="dropdown">
+            <label for="member">Member:</label>
+            <select name="member" id="member">
+                {%for member in object.members.all%}
+                <option value="{{member.pk}}">{{member.user.username}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <div class="message">
+            <label for="description">Description:</label>
+            <textarea cols="40" rows="8" name="description" id="description"></textarea>
+        </div>
+        <div class="deadline">
+            <label for="deadline">Deadline(Days):</label>
+            <input type="number" name="deadline" id="deadline" />
+        </div>
+        <input type="hidden" name="team" value="{{object.pk}}">
+        <div class="submit">
+            <input type="submit" value="Submit" name="add_task" />
+        </div>
+    </form>
+</div>
+
+{%endblock%}
