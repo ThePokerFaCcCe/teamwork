@@ -1,0 +1,74 @@
+{%extends "base/base.html"%}
+{%load static%}
+{%block header%}
+<link rel="stylesheet" href="{%static 'task/task.css' %}">
+{%endblock%}
+
+
+{%block title%}
+{{team_object.name}}'s tasks
+{%endblock%}
+
+{%block body%}
+<div class="main">
+    <div class="task-header">
+        <h1 class="task-title">{{task.title}}</h1>
+        <div class="task-info">
+            <div class="task-create separate-items">
+                <span>Created</span>
+                <span>{{task.created_at|date:"Y/m/d"}}</span>
+            </div>
+            <div class="task-deadline separate-items">
+                <span>Deadline</span>
+                <span>{{task.deadline|date:"Y/m/d"}}</span>
+            </div>
+            <div class="task-updated separate-items">
+                <span>Updated</span>
+                <span>{{task.updated_at|date:"Y/m/d"}}</span>
+            </div>
+            <div class="task-change-status">
+                <form action="" method="post" name="status-change">
+                    {%csrf_token%}
+                    <div class="separate-items">
+                        <label for="status">Status:</label>
+                        <select name="status" id="status" onchange="this.form.submit()">
+                            {%for status in task_status.choices%}
+                            <option value="{{status.0}}" 
+                            {%if status.0 == task.status%}selected="selected"
+                                {%endif%}>
+                                {{status.1}}
+                            </option>
+                            {%endfor%}
+                        </select>
+                        <input type="hidden" name="update_status">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="task-description">{{task.description}}</div>
+        <hr>
+        <div class="task-notes">
+            <h3 class="notes-title">Notes</h3>
+            <div class="write-note">
+                <p class="write-note-title">Write note</p>
+                <form action="" method="post" name="write-note">
+                    {%csrf_token%}
+                    <textarea name="text" id="text" rows="6" placeholder="Write your text..."></textarea>
+                    <button type="submit" name="write_note">Send</button>
+                </form>
+            </div>
+            {%for note in task.notes.all%}
+            <div class="note">
+                <div class="note-header">
+                    <span class="note-user">{{note.user.username}}</span>
+                    <span class="note-date">{{note.created_at|date:"Y/m/d"}}</span>
+                    <span class="note-time">{{note.created_at|date:"H:i"}}</span>
+                </div>
+                <div class="note-text">{{note.text}}</div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  background-color: rgb(63, 72, 83);
+  color: rgb(220, 220, 220);
+  width: 100vw;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+h1 {
+  font-weight: 400;
+}
+a {
+  color: inherit;
+  font-style: normal;
+}
+p {
+  margin-top: 0.7em;
+}
+.warning {
+  color: rgb(62, 148, 236);
+}
+.st_viewport {
+  max-height: 85vh;
+  min-height: 300px;
+  width: 90%;
+  min-width: 333px;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: 5px 20px 50px #000;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+[data-table_id="progress"] {
+  background-color: rgb(255, 115, 0);
+}
+[data-table_id="pending"] {
+  background-color: rgb(61, 53, 39);
+  color: rgb(220, 220, 220);
+}
+[data-table_id="done"] {
+  background-color: rgba(168, 189, 4, 0.8);
+}
+
+._task {
+  width: 150px;
+  flex-grow: 3;
+}
+._deadline,
+._doneat {
+  width: 150px;
+  flex-grow: 1;
+}
+pre {
+  overflow: auto;
+}
+
+/** Sticky table styles **/
+.st_viewport {
+  background-color: rgb(62, 148, 236);
+  color: rgb(27, 30, 36);
+  margin: 20px 0;
+}
+/* ###  Table wrap */
+.st_wrap_table {
+  min-width: 100%;
+}
+/* ##   header */
+.st_table_header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  background-color: rgb(27, 30, 36);
+  color: rgb(220, 220, 220);
+}
+.st_table_header h2 {
+  font-weight: 400;
+  margin: 0 20px;
+  padding: 20px 0 0;
+}
+.st_table_header .st_row {
+  color: rgba(220, 220, 220, 0.7);
+}
+.st_table_header .st_column {
+}
+/* ##  table */
+.st_table {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+/* #   row */
+.st_row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+}
+.st_table .st_row:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* #   column */
+.st_column {
+  padding: 10px 20px;
+}
+
+.st_viewport::-webkit-scrollbar {
+  /* https://codepen.io/wortmann/pen/BNNZLb */
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}

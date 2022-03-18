@@ -1,0 +1,72 @@
+{%extends "base/base.html"%}
+{%load static%}
+{%block header%}
+<link rel="stylesheet" href="{%static 'task/tasks.css' %}">
+{%endblock%}
+
+
+{%block title%}
+{{team_object.name}}'s tasks
+{%endblock%}
+
+{%block body%}
+<main class="st_viewport">
+    <div class="st_wrap_table" data-table_id="progress">
+        <header class="st_table_header">
+            <h2>On progress</h2>
+            <div class="st_row">
+                <div class="st_column _task">Task</div>
+                <div class="st_column _deadline">Deadline</div>
+            </div>
+        </header>
+        <div class="st_table">
+            {%for task in tasks%}
+            {%if task.status == task_status.ON_PROGRESS%}
+            <div class="st_row">
+                <div class="st_column _task"><a href="{%url 'task' task.pk%}">{{task.title}}</a></div>
+                <div class="st_column _deadline">{{task.days_left}} Days</div>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+    </div>
+    <div class="st_wrap_table" data-table_id="pending">
+        <header class="st_table_header">
+            <h2>Pending</h2>
+            <div class="st_row">
+                <div class="st_column _task">Task</div>
+                <div class="st_column _deadline">Deadline</div>
+            </div>
+        </header>
+        <div class="st_table">
+            {%for task in tasks%}
+            {%if task.status == task_status.SENT%}
+            <div class="st_row">
+                <div class="st_column _task"><a href="{%url 'task' task.pk%}">{{task.title}}</a></div>
+                <div class="st_column _deadline">{{task.days_left}} Days</div>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+    </div>
+    <div class="st_wrap_table" data-table_id="done">
+        <header class="st_table_header">
+            <h2>Done</h2>
+            <div class="st_row">
+                <div class="st_column _task">Task</div>
+                <div class="st_column _doneat">Done at</div>
+            </div>
+        </header>
+        <div class="st_table">
+            {%for task in tasks%}
+            {%if task.status == task_status.DONE%}
+            <div class="st_row">
+                <div class="st_column _task"><a href="{%url 'task' task.pk%}">{{task.title}}</a></div>
+                <div class="st_column _deadline">{{task.deadline|date:"Y/m/d"}}</div>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+    </div>
+</main>
+{%endblock%}
