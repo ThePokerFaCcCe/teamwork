@@ -61,7 +61,7 @@
             {%for note in task.notes.all%}
             <div class="note">
                 <div class="note-header">
-                    <span class="note-user">{{note.user.username}}</span>
+                    <span class="note-user">{{note.member.user.username}}</span>
                     <span class="note-date">{{note.created_at|date:"Y/m/d"}}</span>
                     <span class="note-time">{{note.created_at|date:"H:i"}}</span>
                 </div>
